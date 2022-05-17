@@ -29,7 +29,7 @@ function M.setup(options)
     M.config = options or {split = 'auto'}
 
     local attributes = {
-        desc = 'Automatic split horizontal/vertical based on user preference',
+        desc = 'lua require("autosplit").autosplit',
         complete = 'file',
         nargs = '?',
         count = 0
