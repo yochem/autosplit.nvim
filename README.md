@@ -29,10 +29,11 @@ require('autosplit').setup({split = 'auto'})
 ## Usage
 
 Just replace all your usage of `:split` with `:Split`. It has the same
-signature as `:split` (see `:help :split` for more information):
+signature as `:split` (see [`:help
+:split`](https://vimhelp.org/windows.txt.html#%3Asplit) for more information):
 
 ```vimhelp
-:[N]sp[lit] [file]
+:[N]Sp[lit] [file]
 ```
 
 This means that you can open this README.md in a new horizontal split of 5
