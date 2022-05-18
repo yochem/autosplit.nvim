@@ -39,13 +39,14 @@ signature as `:split` (see [`:help
 This means that you can open this README.md in a new horizontal split of 5
 lines high using `:5Sp README.md`.
 
-It is of course also possible to remap this to a keybinding:
+It is of course also possible to remap this to a keybinding, or even better,
+use [`:cabbrev`](https://vimhelp.org/map.txt.html#%3Acabbrev) if you want to
+replace `:split` with this version:
 
 ```lua
-vim.keymap.set('n', '<leader>sp', ':Split ')
+vim.cmd('cabbrev sp Sp')
+vim.cmd('cabbrev split Split')
 ```
-
-This keybinding types `:Split ` when pressing `<leader>sp` in normal mode.
 
 
 ## Heuristic for auto option
