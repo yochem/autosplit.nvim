@@ -1,8 +1,12 @@
 local M = {}
 
 local function autosplit(args)
-	local filename = args.args
 	local count = args.count
+
+	local split_args = { range = { count } }
+	if args.args ~= '' then
+		split_args[1] = args.args
+	end
 
 	local winwidth = vim.fn.winwidth(0)
 	local winheight = vim.fn.winheight(0)
@@ -12,7 +16,7 @@ local function autosplit(args)
 		if count == 0 then
 			count = math.floor(winwidth / 2)
 		end
-		vim.cmd.vsplit({ filename, range = { count } })
+		vim.cmd.vsplit(split_args)
 	end
 
 	local split = function()
@@ -20,12 +24,12 @@ local function autosplit(args)
 		if count == 0 then
 			count = math.floor(winheight / 2)
 		end
-		vim.cmd.split({ filename, range = { count } })
+		vim.cmd.split(split_args)
 	end
 
 	if M.config.split == "auto" then
 		-- if there fits another vertical window
-		if winwidth > 2 * M.min_win_width then
+		if winwidth > 2 * M.config.min_win_width then
 			vsplit()
 		else
 			split()
@@ -42,7 +46,7 @@ function M.setup(options)
 		split = "auto",
 		min_win_width = 80,
 	}
-	M.config = vim.tbl_extend('force', default_opts, options)
+	M.config = vim.tbl_extend('keep', options, default_opts)
 
 	local attributes = {
 		desc = 'lua require("autosplit").autosplit',
