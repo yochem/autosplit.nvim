@@ -1,28 +1,27 @@
 # autosplit.nvim
 
-This plugin adds the user command `:Split` to Neovim. It works the same as
-Neovim's `:split`, but can be configured to split automatically, always
-horizontal or always vertical. The automatic split is based on if the current
-window is wider than 160 characters (and can thus be split in two 80-column
-windows).
+This plugin adds the user command `:Sp[lit]` to Neovim. It works the same as
+Neovim's `:sp[lit]` and `:vs[plit]`, but can be configured to split
+automatically, always horizontal or always vertical. The automatic split is
+based on if the current window is wider than than your preferred minimal window
+width.
 
 
 ## Installation
 
-```lua
-paq 'yochem/autosplit.nvim'
--- or
-use 'yochem/autosplit.nvim'
-```
+Use `'yochem/autosplit.nvim'` with your package manager.
 
 
 ## Configuration
 
-Currently, there is one option to configure: the split direction you prefer.
+Currently, these are the options you can configure and their defaults:
 
 ```lua
--- choose one of 'auto', 'horizontal' and 'vertical'
-require('autosplit').setup({split = 'auto'})
+
+require('autosplit').setup({
+    split = 'auto', -- choose one of 'auto', 'horizontal' and 'vertical'
+    min_win_width = 80 -- the minimal width you want for a splitted window
+})
 ```
 
 
@@ -48,10 +47,13 @@ vim.cmd('cabbrev sp Sp')
 vim.cmd('cabbrev split Split')
 ```
 
+This abbreviation however does not work when using a count (`:10sp ` does not
+change to `:10Sp `).
+
 
 ## Heuristic for auto option
 
 The current heuristic for the auto option whether to split vertical or
-horizontal is based on if the current window can split in two 80-column
-windows. If you think there is a better heuristic, for example using the ratio
-between window width and height, let me know!
+horizontal is based on if the current window can split in two N-column windows,
+with N being configurable. If you think there is a better heuristic, for
+example using the ratio between window width and height, let me know!
