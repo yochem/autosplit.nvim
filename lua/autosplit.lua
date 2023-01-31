@@ -14,7 +14,7 @@ local function autosplit(args)
 	local vsplit = function()
 		-- default is splitting the window in half
 		if count == 0 then
-			count = math.floor(winwidth / 2)
+			split_args.range = {math.floor(winwidth / 2)}
 		end
 		vim.cmd.vsplit(split_args)
 	end
@@ -22,7 +22,7 @@ local function autosplit(args)
 	local split = function()
 		-- default is splitting the window in half
 		if count == 0 then
-			count = math.floor(winheight / 2)
+			split_args.range = {math.floor(winheight / 2)}
 		end
 		vim.cmd.split(split_args)
 	end
