@@ -1,5 +1,20 @@
 # autosplit.nvim
 
+> [!TIP]
+> This autocmd will probably provide the behavior you're looking for:
+> ```lua
+> vim.api.nvim_create_autocmd('WinNew', {
+>   callback = function()
+>     if vim.fn.win_gettype(0) ~= '' then
+>       return
+>     end
+>     if vim.api.nvim_win_get_width(0) > 2 * 80 then
+>       vim.cmd.wincmd(vim.o.splitright and 'L' or 'H')
+>     end
+>   end
+> })
+> ```
+
 This plugin adds the user command `:Sp[lit]` to Neovim. It works the same as
 Neovim's `:sp[lit]` and `:vs[plit]`, but can be configured to split
 automatically, always horizontal or always vertical. The automatic split is
